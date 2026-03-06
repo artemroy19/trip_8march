@@ -10,5 +10,5 @@ export default defineConfig({
     },
   },
 
-  base: '/trip_on_8march/',
+  base: '/trip_8march/',
 });

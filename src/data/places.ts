@@ -1,5 +1,5 @@
 export type ActivityType = 'quiz' | 'puzzle' | 'morse' | 'confession' | 'hearts';
-
+import { getImagePath } from '../utils/imagePath';
 export interface QuizOption {
   id: string;
   text: string;
@@ -71,7 +71,7 @@ export const places: Place[] = [
     name: 'Day one',
     subtitle: 'Именно в этой кофейне всё и началось',
     coordinates: [55.6732, 37.5032],
-    image: '/images/places/day1.png',
+    image: getImagePath('/images/places/day1.png'),
     memoryText:
       'Я до сих пор помню, как мы стояли посреди почти пустой площади, а вокруг медленно зажигался день. Ты смеялась, потому что я никак не мог решить, с какой стороны мы смотримся красивее на фото.',
     activity: {
