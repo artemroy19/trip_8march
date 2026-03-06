@@ -1,0 +1,63 @@
+/* Дополнительные правки для больших экранов */
+@media (min-width: 1400px) {
+    .map-screen {
+      max-width: 1600px;
+      padding: 24px 32px;
+    }
+  
+    .map-layout {
+      grid-template-columns: 360px 1fr;  /* ещё шире левая панель */
+      gap: 32px;
+    }
+  
+    .map-left {
+      padding: 28px;
+    }
+  
+    .map-right {
+      min-height: 600px;
+    }
+  }
+  
+  /* Исправления для старых медиа-запросов */
+  @media (max-width: 1100px) {
+    .map-layout {
+      grid-template-columns: 300px 1fr;
+      gap: 16px;
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .map-layout {
+      grid-template-columns: 1fr;
+    }
+  
+    .map-left {
+      max-width: 100%;
+      margin-bottom: 16px;
+    }
+  
+    .map-right {
+      min-height: 450px;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .map-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+  
+    .map-title {
+      font-size: 1.8rem;
+    }
+  
+    .map-screen {
+      padding: 16px 12px;
+    }
+  
+    .map-right {
+      min-height: 350px;
+    }
+  }

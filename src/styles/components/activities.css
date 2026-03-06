@@ -1,0 +1,232 @@
+.activity-block {
+    border-radius: 16px;
+    padding: 12px 14px;
+    background: rgba(255, 249, 249, 0.9);
+    border: 1px solid rgba(255, 182, 193, 0.4);
+    font-size: 0.9rem;
+  }
+  
+  .activity-title {
+    margin: 0 0 6px;
+    font-size: 0.95rem;
+    color: var(--color-text-heading);
+  }
+  
+  .activity-question {
+    margin: 4px 0 10px;
+  }
+  
+  .activity-step {
+    font-size: 0.8rem;
+    opacity: 0.8;
+  }
+  
+  .activity-options {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  
+  .activity-option {
+    width: 100%;
+    justify-content: flex-start;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--color-text-main);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  }
+
+  .activity-option:disabled {
+    opacity: 0.85;
+    cursor: default;
+    transform: none;
+  }
+  
+  .activity-option.correct {
+    background: rgba(193, 225, 193, 0.45);
+  }
+  
+  .activity-option.incorrect {
+    background: rgba(255, 182, 193, 0.35);
+  }
+  
+  .activity-feedback {
+    margin-top: 6px;
+    font-size: 0.86rem;
+  }
+  
+  .activity-feedback.success {
+    color: #2d6a4f;
+  }
+  
+  .activity-feedback.error {
+    color: #b34755;
+  }
+  
+  .activity-feedback.confession {
+    font-size: 1rem;
+  }
+  
+  .activity-hint {
+    font-size: 0.84rem;
+    opacity: 0.9;
+  }
+  
+  .activity-morse-legend {
+    font-size: 0.8rem;
+    margin: 4px 0 2px;
+    opacity: 0.85;
+  }
+  
+  .puzzle-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin: 10px 0 6px;
+  }
+
+  .puzzle-grid--3x3 {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    width: min(360px, 100%);
+    max-width: 360px;
+  }
+  
+  .puzzle-piece {
+    aspect-ratio: 1 / 1;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(255, 182, 193, 0.9), rgba(224, 209, 255, 0.9));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    cursor: grab;
+    user-select: none;
+  }
+  
+  .puzzle-piece--done {
+    cursor: default;
+  }
+
+  .puzzle-piece--photo {
+    background-repeat: no-repeat;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+  }
+
+  .activity-next {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .emoji-lock {
+    margin-top: 10px;
+    padding: 12px 12px 10px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px dashed rgba(107, 79, 107, 0.25);
+  }
+
+  .emoji-lock-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .emoji-slot {
+    height: 54px;
+    border-radius: 14px;
+    background: rgba(255, 249, 249, 0.9);
+    border: 1px solid rgba(255, 182, 193, 0.55);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+    font-size: 1.6rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-heading);
+    padding: 0;
+  }
+
+  .emoji-slot--active {
+    outline: 2px solid rgba(224, 209, 255, 0.85);
+    outline-offset: 2px;
+  }
+
+  .emoji-lock--success {
+    animation: lockSuccess 380ms ease-out;
+    border-color: rgba(193, 225, 193, 0.9);
+  }
+
+  @keyframes lockSuccess {
+    0% {
+      transform: translateY(0) scale(1);
+    }
+    45% {
+      transform: translateY(-2px) scale(1.02);
+    }
+    100% {
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .emoji-lock-hint {
+    font-size: 0.82rem;
+    opacity: 0.85;
+  }
+
+  .emoji-lock-actions {
+    margin-top: 8px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .emoji-reset {
+    background: rgba(224, 209, 255, 0.35);
+    color: var(--color-text-heading);
+    box-shadow: none;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+
+  .confession-reveal {
+    animation: fadeIn 500ms ease-out forwards;
+  }
+  
+  .activity-input-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  
+  .activity-input {
+    flex: 1;
+    border-radius: 999px;
+    border: 1px solid rgba(107, 79, 107, 0.4);
+    padding: 6px 12px;
+    font-family: inherit;
+  }
+  
+  .hearts-row {
+    display: flex;
+    gap: 8px;
+    margin: 10px 0 4px;
+  }
+  
+  .heart-chip {
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 0.9rem;
+    background: rgba(255, 249, 249, 0.9);
+    color: var(--color-text-heading);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .heart-chip--filled {
+    background: linear-gradient(135deg, #ffb6c1, #ffc8d3);
+    color: #fff;
+  }

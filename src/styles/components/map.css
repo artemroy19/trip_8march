@@ -1,0 +1,340 @@
+.map-screen {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px 24px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: relative;
+}
+
+.map-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 8px;
+  flex-shrink: 0;
+  margin-bottom: 8px;
+}
+
+.map-title-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.map-title {
+  margin: 0;
+  font-size: 2.4rem;
+  color: var(--color-text-heading);
+}
+
+.map-counter-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  margin-top: -4px;
+  align-self: flex-start;
+}
+
+.pill-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(193, 225, 193, 0.25);
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-heading);
+  line-height: 1;
+}
+
+.pill-counter span {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.map-layout {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 28px;
+  align-items: stretch;
+  width: 100%;
+  flex: 1;
+  min-height: 600px;
+  height: calc(100vh - 180px);
+}
+
+.map-left {
+  padding: 28px 28px 0;
+  min-width: 380px;
+  max-width: 420px;
+  overflow-y: auto;
+  max-height: 100%;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 24px;
+  border: 1px solid var(--color-card-border);
+  box-shadow: var(--shadow-soft);
+  margin-right: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.map-right {
+  width: 100%;
+  height: 100%;
+  transform: translateX(-10px);
+}
+
+.map-wrapper {
+  height: 100%;
+  padding: 8px;
+  position: relative;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid var(--color-card-border);
+  box-shadow: var(--shadow-soft);
+}
+
+/* КНОПКИ ЗУМА - ПЕРЕМЕЩЕНЫ ВЛЕВО */
+.map-zoom-controls {
+  position: absolute;
+  left: 18px;  /* изменено с right на left */
+  bottom: 18px;
+  z-index: 12;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.map-zoom-button {
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  border: 1px solid rgba(224, 209, 255, 0.65);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--color-text-heading);
+  font-size: 1.3rem;
+  line-height: 1;
+  font-weight: 700;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  padding: 0;
+}
+
+.map-zoom-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.14);
+}
+
+.map-zoom-button:active {
+  transform: translateY(0);
+}
+
+.map-wrapper .pigeon-map {
+  border-radius: 20px;
+  z-index: 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* СТИЛИ ДЛЯ ПРИВЕТСТВЕННОГО ПИСЬМА */
+.welcome-letter {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.welcome-title {
+  margin: 0 0 16px;
+  font-size: 2.2rem;
+  color: var(--color-text-heading);
+  font-family: 'Caveat', cursive;
+  border-bottom: 2px dashed rgba(255, 182, 193, 0.4);
+  padding-bottom: 12px;
+}
+
+.welcome-list {
+  padding-left: 24px;
+  margin: 16px 0;
+}
+
+.welcome-list li {
+  margin-bottom: 10px;
+}
+
+.welcome-signature {
+  margin-top: 24px;
+  text-align: right;
+  font-size: 1.6rem;
+  color: var(--color-text-heading);
+}
+
+/* СТИЛИ ДЛЯ КНОПКИ "ОТКРЫТЬ ПИСЬМО ЕЩЁ РАЗ" */
+.map-left .primary-button {
+  display: block;
+  width: fit-content;
+  margin: 20px auto 30px;
+  padding: 12px 28px;
+  font-size: 1rem;
+  background: linear-gradient(135deg, var(--color-accent-pink), var(--color-accent-lilac));
+  border: none;
+  border-radius: 999px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(255, 182, 193, 0.4);
+  transition: all 0.2s;
+}
+
+.map-left .primary-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(255, 182, 193, 0.6);
+}
+
+.map-left .primary-button:active {
+  transform: translateY(0);
+}
+
+/* КОНТЕЙНЕР ДЛЯ НАДПИСИ "ПРОДОЛЖЕНИЕ В МАЕ" */
+.final-continue-wrapper {
+  margin-top: auto;
+  padding: 16px 0 20px;
+  width: 100%;
+  border-top: 1px dashed rgba(224, 209, 255, 0.5);
+  background: inherit;
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+}
+
+/* САМА НАДПИСЬ */
+.final-continue {
+  font-size: 1.3rem;
+  text-align: center;
+  margin: 0;
+  padding: 8px 0 0;
+  color: var(--color-accent-lilac);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  font-family: 'Nunito', sans-serif;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.final-continue:hover {
+  opacity: 1;
+}
+
+.final-continue::before {
+  content: "✧";
+  font-size: 1.2rem;
+  color: var(--color-accent-pink);
+  display: inline-block;
+}
+
+.final-continue::after {
+  content: "✧";
+  font-size: 1.2rem;
+  color: var(--color-accent-pink);
+  display: inline-block;
+}
+
+/* ПОДСКАЗКА НА КАРТЕ */
+.map-help {
+  position: absolute;
+  right: 22px;
+  bottom: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+  font-size: 0.85rem;
+  z-index: 10;
+}
+
+.map-help-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(224, 209, 255, 0.9);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* УМЕНЬШЕННЫЕ МАРКЕРЫ НА КАРТЕ */
+.map-marker {
+  position: relative;
+  width: 24px;  /* уменьшено с 30px */
+  height: 32px;  /* уменьшено с 38px */
+  transform: translate3d(0, 0, 0);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.map-marker:hover {
+  transform: translate3d(0, -4px, 0) scale(1.05);  /* уменьшена анимация */
+  z-index: 1000;
+}
+
+.map-marker::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 10px;  /* уменьшено с 12px */
+  height: 12px;  /* уменьшено с 14px */
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: radial-gradient(circle at top, rgba(0, 0, 0, 0.25), transparent 60%);
+  opacity: 0.7;
+}
+
+.map-marker::after {
+  content: '❤';
+  position: absolute;
+  left: 50%;
+  bottom: 8px;  /* уменьшено с 10px */
+  transform: translateX(-50%);
+  width: 20px;  /* уменьшено с 26px */
+  height: 22px;  /* уменьшено с 28px */
+  border-radius: 12px 12px 14px 14px;  /* уменьшено */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;  /* уменьшено с 14px */
+  color: #fff;
+  box-shadow: 0 6px 12px rgba(107, 79, 107, 0.5);  /* уменьшена тень */
+}
+
+.map-marker--pink::after {
+  background: linear-gradient(135deg, #ffb6c1, #ffc8d3);
+}
+
+.map-marker--gold::after {
+  background: linear-gradient(135deg, #ffd97d, #ffe8a3);
+  content: '✶';
+}
