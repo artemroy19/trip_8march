@@ -312,13 +312,13 @@
   .catch-hearts-heart {
     position: absolute;
     transform: translate(-50%, -50%);
-    font-size: 1.5rem;
+    font-size: 2.2rem;
     pointer-events: none;
     text-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   }
 
   .catch-hearts-heart--gold {
-    font-size: 1.7rem;
+    font-size: 2.5rem;
   }
 
   .catch-hearts-heart--broken {
@@ -453,9 +453,8 @@
   }
 
   .it-match-card--matched {
-    background: radial-gradient(circle at 0% 0%, #1d4830 0, #12241a 45%, #162d1f 100%);
-    border-color: rgba(193, 225, 193, 0.9);
-    animation: itMatchFade 650ms ease-out forwards;
+    border: 3px solid var(--pair-color, #4ade80);
+    box-shadow: 0 0 8px var(--pair-color);
   }
 
   .it-match-card-text {
@@ -464,15 +463,4 @@
 
   .it-match-success {
     margin-top: 10px;
-  }
-
-  @keyframes itMatchFade {
-    0% {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-    100% {
-      opacity: 0;
-      transform: translateY(4px) scale(0.94);
-    }
   }

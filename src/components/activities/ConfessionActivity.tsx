@@ -11,7 +11,7 @@ type SlotIndex = 0 | 1 | 2;
 type SlotsState = [number, number, number];
 
 export function ConfessionActivity({ activity, onCompleted }: ConfessionActivityProps) {
-  const [slots, setSlots] = useState<SlotsState>([0, 0, 0]);
+  const [slots, setSlots] = useState<SlotsState>([1, 1, 1]);
   const [activeSlot, setActiveSlot] = useState<SlotIndex | null>(null);
   const [revealed, setRevealed] = useState(false);
   const [localDone, setLocalDone] = useState(false);
@@ -50,7 +50,7 @@ export function ConfessionActivity({ activity, onCompleted }: ConfessionActivity
   };
 
   const reset = () => {
-    setSlots([0, 0, 0]);
+    setSlots([1, 1, 1]);
     setActiveSlot(null);
     setRevealed(false);
   };
@@ -68,6 +68,7 @@ export function ConfessionActivity({ activity, onCompleted }: ConfessionActivity
               type="button"
               className={`emoji-slot ${activeSlot === idx ? 'emoji-slot--active' : ''}`}
               onClick={() => cycle(idx as SlotIndex)}
+              disabled={revealed}
               aria-label={`Ячейка ${idx + 1}`}
             >
               {chosen[idx]}

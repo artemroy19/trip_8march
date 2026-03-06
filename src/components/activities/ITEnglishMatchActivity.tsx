@@ -9,8 +9,18 @@ interface ITEnglishMatchActivityProps {
 interface MatchCard {
   id: string;
   pairId: string;
+  pairIndex: number;
   text: string;
 }
+
+const PAIR_BORDER_COLORS = [
+  '#e879f9', /* фиолетовый */
+  '#38bdf8', /* голубой */
+  '#4ade80', /* зелёный */
+  '#fbbf24', /* жёлтый */
+  '#f472b6', /* розовый */
+  '#a78bfa', /* лавандовый */
+];
 
 function shuffle<T>(arr: T[]): T[] {
   const copy = [...arr];
@@ -27,10 +37,10 @@ export function ITEnglishMatchActivity({
 }: ITEnglishMatchActivityProps) {
   const cards = useMemo<MatchCard[]>(() => {
     const base: MatchCard[] = [];
-    activity.pairs.forEach((pair) => {
+    activity.pairs.forEach((pair, idx) => {
       base.push(
-        { id: `${pair.id}-term`, pairId: pair.id, text: pair.term },
-        { id: `${pair.id}-def`, pairId: pair.id, text: pair.definition },
+        { id: `${pair.id}-term`, pairId: pair.id, pairIndex: idx, text: pair.term },
+        { id: `${pair.id}-def`, pairId: pair.id, pairIndex: idx, text: pair.definition },
       );
     });
     return shuffle(base);
@@ -128,6 +138,7 @@ export function ITEnglishMatchActivity({
         {cards.map((card) => {
           const isOpened = opened.includes(card.id) || matched.includes(card.id);
           const isMatched = matched.includes(card.id);
+          const pairColor = isMatched ? PAIR_BORDER_COLORS[card.pairIndex] : undefined;
 
           return (
             <button
@@ -138,6 +149,11 @@ export function ITEnglishMatchActivity({
               } ${isMatched ? 'it-match-card--matched' : ''}`}
               onClick={() => handleCardClick(card.id)}
               disabled={isMatched}
+              style={
+                pairColor
+                  ? { '--pair-color': pairColor } as React.CSSProperties
+                  : undefined
+              }
             >
               <span className="it-match-card-text">
                 {isOpened ? card.text : '❔'}

@@ -16,10 +16,12 @@ interface Heart {
   speed: number; // относительная скорость падения
 }
 
-const SPAWN_MIN_MS = 500;
-const SPAWN_MAX_MS = 800;
-const BASKET_WIDTH_PERCENT = 18;
+const SPAWN_MIN_MS = 1200;
+const SPAWN_MAX_MS = 2000;
+const BASKET_WIDTH_PERCENT = 24;
 const BASKET_HALF = BASKET_WIDTH_PERCENT / 2;
+const CATCH_Y_MIN = 78;
+const CATCH_Y_MAX = 98;
 
 export function CatchHeartsActivity({ activity, onCompleted }: CatchHeartsActivityProps) {
   const [score, setScore] = useState(0);
@@ -49,20 +51,9 @@ export function CatchHeartsActivity({ activity, onCompleted }: CatchHeartsActivi
     return 'gold';
   };
 
-  const spawnHeart = () => {
-    const id = nextHeartId.current;
-    nextHeartId.current += 1;
-    const kind = randomHeartKind();
-    const baseSpeed = kind === 'gold' ? 0.09 : kind === 'broken' ? 0.11 : 0.08;
-    const heart: Heart = {
-      id,
-      kind,
-      x: 8 + Math.random() * 84,
-      y: -5,
-      speed: baseSpeed * (0.7 + Math.random() * 0.8),
-    };
-    setHearts((prev) => [...prev, heart]);
-  };
+
+  const heartsRef = useRef<Heart[]>([]);
+  heartsRef.current = hearts;
 
   useEffect(() => {
     let frameId: number;
@@ -81,58 +72,60 @@ export function CatchHeartsActivity({ activity, onCompleted }: CatchHeartsActivi
         shouldSpawn = true;
       }
 
-      setHearts((prev) => {
-        const updated: Heart[] = [];
-        const basketCenter = basketXRef.current;
+      const prev = heartsRef.current;
+      const updated: Heart[] = [];
+      let deltaScore = 0;
+      const basketCenter = basketXRef.current;
 
-        prev.forEach((heart) => {
-          const nextY = heart.y + heart.speed * (delta / 16.67);
-          if (nextY >= 100) {
-            const dx = heart.x - basketCenter;
-            const isCaught = Math.abs(dx) <= BASKET_HALF;
-            if (isCaught) {
-              let deltaScore = 0;
-              if (heart.kind === 'pink') deltaScore = 1;
-              if (heart.kind === 'gold') deltaScore = 3;
-              if (heart.kind === 'broken') deltaScore = -1;
+      prev.forEach((heart) => {
+        const speedPerFrame = heart.speed * (delta / 16.67);
+        const nextY = heart.y + speedPerFrame;
 
-              if (deltaScore !== 0) {
-                setScore((prevScore) => {
-                  const nextScore = prevScore + deltaScore;
-                  if (!completedOnceRef.current && nextScore >= targetScore) {
-                    completedOnceRef.current = true;
-                    onCompleted();
-                  }
-                  return nextScore;
-                });
-              }
-            }
+        if (nextY >= CATCH_Y_MIN && nextY <= CATCH_Y_MAX) {
+          const dx = heart.x - basketCenter;
+          const isCaught = Math.abs(dx) <= BASKET_HALF;
+          if (isCaught) {
+            if (heart.kind === 'pink') deltaScore += 1;
+            else if (heart.kind === 'gold') deltaScore += 3;
+            else if (heart.kind === 'broken') deltaScore -= 1;
             return;
           }
-
-          updated.push({
-            ...heart,
-            y: nextY,
-          });
-        });
-
-        if (shouldSpawn) {
-          const id = nextHeartId.current;
-          nextHeartId.current += 1;
-          const kind = randomHeartKind();
-          const baseSpeed = kind === 'gold' ? 0.09 : kind === 'broken' ? 0.11 : 0.08;
-          const newHeart: Heart = {
-            id,
-            kind,
-            x: 8 + Math.random() * 84,
-            y: -5,
-            speed: baseSpeed * (0.7 + Math.random() * 0.8),
-          };
-          updated.push(newHeart);
         }
 
-        return updated;
+        if (nextY >= 110) return;
+
+        updated.push({
+          ...heart,
+          y: nextY,
+        });
       });
+
+      if (shouldSpawn) {
+        const id = nextHeartId.current;
+        nextHeartId.current += 1;
+        const kind = randomHeartKind();
+        const baseSpeed = kind === 'gold' ? 0.55 : kind === 'broken' ? 0.65 : 0.5;
+        updated.push({
+          id,
+          kind,
+          x: 10 + Math.random() * 80,
+          y: -8,
+          speed: baseSpeed * (0.85 + Math.random() * 0.3),
+        });
+      }
+
+      setHearts(updated);
+
+      if (deltaScore !== 0) {
+        setScore((prevScore) => {
+          const nextScore = prevScore + deltaScore;
+          if (!completedOnceRef.current && nextScore >= targetScore) {
+            completedOnceRef.current = true;
+            onCompleted();
+          }
+          return nextScore;
+        });
+      }
 
       frameId = requestAnimationFrame(step);
     };

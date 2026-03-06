@@ -205,8 +205,8 @@ export const places: Place[] = [
       type: 'it-english',
       textBefore:
         'Ты — мой идеальный микс из IT и английского. Давай соберём пары: термины и их переводы или объяснения. За каждую найденную пару — 10 очков.',
-      targetScore: 50,
-      successText: '50 очков! IT + English = ❤️ Ты моя идеальная пара во всём!',
+      targetScore: 60,
+      successText: '60 очков! IT + English = ❤️ Ты моя идеальная пара во всём!',
       pairs: [
         {
           id: 'frontend',
@@ -232,6 +232,11 @@ export const places: Place[] = [
           id: 'api',
           term: 'API',
           definition: 'интерфейс взаимодействия',
+        },
+        {
+          id: 'deploy',
+          term: 'Deploy',
+          definition: 'выложить на сервер',
         },
       ],
     },
