@@ -1,6 +1,13 @@
 import day1Img from '/images/places/day1.png';
 
-export type ActivityType = 'quiz' | 'puzzle' | 'morse' | 'confession' | 'hearts';
+export type ActivityType =
+  | 'quiz'
+  | 'puzzle'
+  | 'morse'
+  | 'confession'
+  | 'hearts'
+  | 'catch-hearts'
+  | 'it-english';
 
 export interface QuizOption {
   id: string;
@@ -50,12 +57,35 @@ export interface HeartsActivity {
   total: number;
 }
 
+export interface CatchHeartsActivity {
+  type: 'catch-hearts';
+  textBefore: string;
+  targetScore: number;
+  successText: string;
+}
+
+export interface ITEnglishPair {
+  id: string;
+  term: string;
+  definition: string;
+}
+
+export interface ITEnglishMatchActivity {
+  type: 'it-english';
+  textBefore: string;
+  pairs: ITEnglishPair[];
+  targetScore: number;
+  successText: string;
+}
+
 export type Activity =
   | QuizActivity
   | PuzzleActivity
   | MorseActivity
   | ConfessionActivity
-  | HeartsActivity;
+  | HeartsActivity
+  | CatchHeartsActivity
+  | ITEnglishMatchActivity;
 
 export interface Place {
   id: number;
@@ -139,12 +169,12 @@ export const places: Place[] = [
     memoryText:
       'Мы смотрели на огни Москвы и строили планы, которые казались такими далекими. А сейчас я понимаю, что многие из них уже сбываются — просто потому что мы идём рядом, даже через тысячи километров.',
     activity: {
-      type: 'hearts',
+      type: 'catch-hearts',
       textBefore:
-        'Кажется, ветер раскидал все сердечки, которыми мы украшали этот вид. Соберём их обратно? 💗',
-      textAfter:
-        'Вот так намного лучше. Когда все сердечки на месте, так похоже на то, как мне спокойно, когда ты рядом.',
-      total: 5,
+        'Под нами — вся Москва, а вокруг, кажется, летают сердечки. Попробуешь поймать их все в одну корзинку? Лови только целые и золотые — разбитые лучше облетать стороной. 💗',
+      targetScore: 30,
+      successText:
+        'Ты поймала столько сердечек, сколько я ловлю каждый день, глядя на тебя. 30 очков любви! ❤️',
     },
   },
   {
@@ -172,18 +202,36 @@ export const places: Place[] = [
     memoryText:
       'Название совсем не врёт: нам с тобой там действительно никогда не было скучно. Я помню каждую твою улыбку под этими деревьями.',
     activity: {
-      type: 'quiz',
-      questions: [
+      type: 'it-english',
+      textBefore:
+        'Ты — мой идеальный микс из IT и английского. Давай соберём пары: термины и их переводы или объяснения. За каждую найденную пару — 10 очков.',
+      targetScore: 50,
+      successText: '50 очков! IT + English = ❤️ Ты моя идеальная пара во всём!',
+      pairs: [
         {
-          id: 'q1',
-          question: 'Что ты сказала, когда я в первый раз попытался рассказать шутку в Нескучном саду?',
-          options: [
-            { id: 'a', text: '«Это худшая шутка в моей жизни»' },
-            { id: 'b', text: '«Я всё равно смеюсь, потому что это ты»', correct: true },
-            { id: 'c', text: '«Давай лучше просто помолчим»' },
-          ],
-          successText:
-            'Вот именно. Мне до сих пор так тепло от того, как ты умеешь смеяться надо мной и со мной одновременно.',
+          id: 'frontend',
+          term: 'Frontend',
+          definition: 'то, что видит пользователь',
+        },
+        {
+          id: 'backend',
+          term: 'Backend',
+          definition: 'серверная часть',
+        },
+        {
+          id: 'debugging',
+          term: 'Debugging',
+          definition: 'исправление ошибок',
+        },
+        {
+          id: 'commit',
+          term: 'Commit',
+          definition: 'сохранить изменения',
+        },
+        {
+          id: 'api',
+          term: 'API',
+          definition: 'интерфейс взаимодействия',
         },
       ],
     },

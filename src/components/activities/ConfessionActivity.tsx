@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { ConfessionActivity as ConfessionActivityType } from '../../data/places';
 
 interface ConfessionActivityProps {
@@ -6,10 +6,13 @@ interface ConfessionActivityProps {
   onCompleted: () => void;
 }
 
+const EMOJIS = ['🧸', '🌸', '💌', '❤️', '⭐'] as const;
+type SlotIndex = 0 | 1 | 2;
+type SlotsState = [number, number, number];
+
 export function ConfessionActivity({ activity, onCompleted }: ConfessionActivityProps) {
-  const EMOJIS = useMemo(() => ['🧸', '🌸', '💌', '❤️', '⭐'] as const, []);
-  const [slots, setSlots] = useState<[number, number, number]>([0, 0, 0]);
-  const [activeSlot, setActiveSlot] = useState<0 | 1 | 2 | null>(null);
+  const [slots, setSlots] = useState<SlotsState>([0, 0, 0]);
+  const [activeSlot, setActiveSlot] = useState<SlotIndex | null>(null);
   const [revealed, setRevealed] = useState(false);
   const [localDone, setLocalDone] = useState(false);
   const completedOnceRef = useRef(false);
@@ -36,20 +39,20 @@ export function ConfessionActivity({ activity, onCompleted }: ConfessionActivity
     }
   }, [isCorrect, revealed]);
 
-  const cycle = (idx: 0 | 1 | 2) => {
+  const cycle = (idx: SlotIndex) => {
     if (revealed) return;
     setActiveSlot(idx);
     setSlots((prev) => {
-      const next = [...prev] as [number, number, number];
+      const next = [...prev] as SlotsState;
       next[idx] = (next[idx] + 1) % EMOJIS.length;
       return next;
     });
   };
 
   const reset = () => {
-    if (revealed) return;
     setSlots([0, 0, 0]);
     setActiveSlot(null);
+    setRevealed(false);
   };
 
   return (
@@ -57,34 +60,32 @@ export function ConfessionActivity({ activity, onCompleted }: ConfessionActivity
       <h3 className="activity-title">Романтическое признание</h3>
       <p>{activity.textBefore}</p>
 
-      {!revealed && (
-        <div className={`emoji-lock ${isCorrect ? 'emoji-lock--success' : ''}`}>
-          <div className="emoji-lock-row" role="group" aria-label="Кодовый замок">
-            {[0, 1, 2].map((idx) => (
-              <button
-                key={idx}
-                type="button"
-                className={`emoji-slot ${activeSlot === idx ? 'emoji-slot--active' : ''}`}
-                onClick={() => cycle(idx as 0 | 1 | 2)}
-                aria-label={`Ячейка ${idx + 1}`}
-              >
-                {chosen[idx]}
-              </button>
-            ))}
-          </div>
-          <div className="emoji-lock-hint">
-            Подсказка: попробуй собрать три одинаковых «плюшевых» 🧸
-          </div>
-          <div className="emoji-lock-actions">
-            <button type="button" onClick={reset} className="emoji-reset">
-              Сбросить
+      <div className={`emoji-lock ${revealed ? 'emoji-lock--success' : ''}`}>
+        <div className="emoji-lock-row" role="group" aria-label="Кодовый замок">
+          {[0, 1, 2].map((idx) => (
+            <button
+              key={idx}
+              type="button"
+              className={`emoji-slot ${activeSlot === idx ? 'emoji-slot--active' : ''}`}
+              onClick={() => cycle(idx as SlotIndex)}
+              aria-label={`Ячейка ${idx + 1}`}
+            >
+              {chosen[idx]}
             </button>
-          </div>
+          ))}
         </div>
-      )}
+        <div className="emoji-lock-hint">
+          Подсказка: попробуй собрать трёх плюшевых мишек 🧸
+        </div>
+        <div className="emoji-lock-actions">
+          <button type="button" onClick={reset} className="emoji-reset">
+            Сбросить
+          </button>
+        </div>
+      </div>
 
       {revealed && (
-        <p className="activity-feedback success confession confession-reveal">
+        <p className="activity-feedback success confession confession-reveal" aria-live="polite">
           {activity.revealedText}
         </p>
       )}

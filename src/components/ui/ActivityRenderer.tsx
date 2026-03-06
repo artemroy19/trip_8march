@@ -4,6 +4,8 @@ import { PuzzleActivity } from '../activities/PuzzleActivity';
 import { MorseActivity } from '../activities/MorseActivity';
 import { ConfessionActivity } from '../activities/ConfessionActivity';
 import { HeartsActivity } from '../activities/HeartsActivity';
+import { CatchHeartsActivity } from '../activities/CatchHeartsActivity';
+import { ITEnglishMatchActivity } from '../activities/ITEnglishMatchActivity';
 
 interface ActivityRendererProps {
   activity: Activity;
@@ -22,6 +24,10 @@ export function ActivityRenderer({ activity, onCompleted }: ActivityRendererProp
       return <ConfessionActivity activity={activity} onCompleted={onCompleted} />;
     case 'hearts':
       return <HeartsActivity activity={activity} onCompleted={onCompleted} />;
+    case 'catch-hearts':
+      return <CatchHeartsActivity activity={activity} onCompleted={onCompleted} />;
+    case 'it-english':
+      return <ITEnglishMatchActivity activity={activity} onCompleted={onCompleted} />;
     default:
       return null;
   }
