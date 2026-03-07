@@ -17,7 +17,10 @@ export function FinishedLetterTeaser({ onOpenFinalLetter }: FinishedLetterTeaser
     <div className="welcome-letter">
       <h2 className="handwritten welcome-title">Ты прошла всё путешествие ✨</h2>
       <p>
-        Жду тебя, солнышко 
+        Жду тебя, солнышко!
+      </p>
+      <p>
+        Бесконечно люблю 🩷🫂
       </p>
       <button
         type="button"

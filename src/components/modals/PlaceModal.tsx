@@ -36,7 +36,6 @@ export function PlaceModal({ state, onClose, onCompleted }: PlaceModalProps) {
               alt={place.name}
               className="place-image"
               onError={(e) => {
-                // Если фото не загрузилось, показываем заглушку
                 e.currentTarget.style.display = 'none';
                 e.currentTarget.parentElement?.classList.add('place-image-placeholder');
               }}
@@ -51,7 +50,7 @@ export function PlaceModal({ state, onClose, onCompleted }: PlaceModalProps) {
                 onClick={onClose}
                 className={`primary-button ${completed ? 'primary-button--ready' : ''}`}
               >
-                {completed ? 'Место посещено! ✅' : 'Вспомнили! Закрыть'}
+                {completed ? 'Едем дальше! ✅' : 'Закрыть'}
               </button>
             </div>
           </div>

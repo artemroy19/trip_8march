@@ -17,19 +17,19 @@ export function BoardingPassScreen({ onNext }: BoardingProps) {
     <div className="boarding-screen fade-in">
       <div className="boarding-card soft-card">
         <div className="boarding-left">
-          <div className="boarding-airline">Eleonora Airlines</div>
+          <div className="boarding-airline">Elf Airlines</div>
           <div className="boarding-main">
             <div className="boarding-label">Пассажир</div>
             <div className="boarding-value boarding-passenger">
-              ПЕТРОВА ЭЛЕОНОРА
-              <span className="boarding-sub">PETROVA ELEONORA</span>
+              ХИСАМУТДИНОВА ЭЛЕОНОРА
+              <span className="boarding-sub">KHISAMUTDINOVA ELEONORA</span>
             </div>
             <div className="boarding-row">
               <div>
                 <div className="boarding-label">Откуда</div>
                 <div className="boarding-value">
-                  ПЕНДЖАБ (МОХАЛИ)
-                  <span className="boarding-sub">PUNJAB (MOHALI)</span>
+                  ПЕНДЖАБ (IND)
+                  <span className="boarding-sub">PUNJAB (IND)</span>
                 </div>
               </div>
               <div>
@@ -54,7 +54,7 @@ export function BoardingPassScreen({ onNext }: BoardingProps) {
             <div className="boarding-row">
               <div>
                 <div className="boarding-label">Время вылета</div>
-                <div className="boarding-value">КОГДА ЗАХОЧЕШЬ</div>
+                <div className="boarding-value">Прямо сейчас</div>
               </div>
               <div>
                 <div className="boarding-label">Выход (Gate)</div>
@@ -62,7 +62,7 @@ export function BoardingPassScreen({ onNext }: BoardingProps) {
               </div>
               <div>
                 <div className="boarding-label">Место (Seat)</div>
-                <div className="boarding-value">1A</div>
+                <div className="boarding-value">1E</div>
                 <div className="boarding-sub">РЯДОМ СО МНОЙ</div>
               </div>
             </div>
@@ -71,7 +71,7 @@ export function BoardingPassScreen({ onNext }: BoardingProps) {
         <div className="boarding-right">
           <div className="boarding-welcome handwritten">ДОБРО ПОЖАЛОВАТЬ ДОМОЙ</div>
           <p className="boarding-note">
-            Этот билет даёт право на одно бесконечно счастливое возвращение. Сохрани его ❤️
+            Этот билет даёт право на бесконечное путешествие <br />Сохрани его ❤️
           </p>
           <div className="boarding-barcode" aria-hidden="true">
             <div className="barcode-hearts">LOVE</div>

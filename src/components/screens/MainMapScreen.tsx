@@ -42,11 +42,13 @@ export function MainMapScreen({
     <div className="map-screen fade-in">
       <header className="map-header">
         <div className="map-title-block">
-          <div className="soft-tag">С 8 Марта, любимая!</div>
+          <div className="soft-tag" style={{ fontSize: '1rem' }}>
+            С 8 Марта, Эля! 🌸
+          </div>
           <h1 className="handwritten map-title">Маленькое путешествие домой</h1>
         </div>
         <div className="map-counter-area">
-          <div className="pill-counter">
+          <div className="pill-counter" style={{ fontSize: '1rem' }}>
             <span aria-hidden="true">♡</span>
             Исследовано: {visitedCount}/{total}
           </div>
