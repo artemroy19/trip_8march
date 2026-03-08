@@ -464,3 +464,59 @@
   .it-match-success {
     margin-top: 10px;
   }
+.morse-container {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  padding: 16px 12px;
+  margin: 16px 0 12px;
+  border: 1px dashed var(--color-accent-lilac);
+}
+
+.morse-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px 16px;
+  font-family: 'Courier New', monospace;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.morse-column p {
+  margin: 2px 0;
+  color: var(--color-text-main);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.morse-column p:hover {
+  color: var(--color-accent-pink);
+  transform: scale(1.02);
+  transition: all 0.2s;
+}
+
+.morse-message {
+  background: linear-gradient(135deg, rgba(255, 182, 193, 0.15), rgba(224, 209, 255, 0.15));
+  border-radius: 16px;
+  padding: 16px;
+  margin: 16px 0;
+  text-align: center;
+  border: 2px solid var(--color-accent-pink);
+}
+
+.morse-message-label {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-text-heading);
+  margin-bottom: 8px;
+}
+
+.morse-message-code {
+  font-family: 'Courier New', monospace;
+  font-size: 1.8rem;
+  font-weight: bold;
+  letter-spacing: 8px;
+  color: var(--color-accent-pink);
+  text-shadow: 2px 2px 4px rgba(255, 182, 193, 0.3);
+  word-break: break-word;
+}

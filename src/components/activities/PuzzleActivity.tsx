@@ -82,7 +82,7 @@ export function PuzzleActivity({ activity, onCompleted }: PuzzleActivityProps) {
           );
         })}
       </div>
-      <p className="activity-hint">Перетаскивай кусочки, чтобы собрать картинку.</p>
+      <p className="activity-hint">Перетаскивай кусочки, чтобы собрать картинку</p>
       {done && <p className="activity-feedback success">{activity.textAfter}</p>}
     </div>
   );

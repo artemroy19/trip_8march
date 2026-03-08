@@ -25,16 +25,55 @@ export function MorseActivity({ activity, onCompleted }: MorseActivityProps) {
   return (
     <div className="activity-block">
       <h3 className="activity-title">Наш секретный язык</h3>
-      <p>{activity.encoded}</p>
+      
+      <div className="morse-message">
+        <p className="morse-message-label">🔍 Зашифрованное послание:</p>
+        <p className="morse-message-code">{activity.encoded}</p>
+      </div>
+
       <p className="activity-hint">
-        Нам с тобой известен свой секретный язык. Что тут написано?
+        Русскую азбуку Морзе мы освоили. Пора освоить и английскую. Что тут написано?
       </p>
-      <p className="activity-morse-legend">
-        A ·‑ &nbsp; B ‑··· &nbsp; C ‑·‑· &nbsp; D ‑·· &nbsp; E · &nbsp; F ··‑· &nbsp; G ‑‑· &nbsp; H
-        ···· &nbsp; I ·· &nbsp; J ·‑‑‑ &nbsp; K ‑·‑ &nbsp; L ·‑·· &nbsp; M ‑‑ &nbsp; N ‑· &nbsp; O
-        ‑‑‑ &nbsp; P ·‑‑· &nbsp; Q ‑‑·‑ &nbsp; R ·‑· &nbsp; S ··· &nbsp; T ‑ &nbsp; U ··‑ &nbsp; V
-        ···‑ &nbsp; W ·‑‑ &nbsp; X ‑··‑ &nbsp; Y ‑·‑‑ &nbsp; Z ‑‑··
-      </p>
+      
+      <div className="morse-container">
+        <div className="morse-grid">
+          <div className="morse-column">
+            <p>A ·‑</p>
+            <p>B ‑···</p>
+            <p>C ‑·‑·</p>
+            <p>D ‑··</p>
+            <p>E ·</p>
+            <p>F ··‑·</p>
+            <p>G ‑‑·</p>
+          </div>
+          <div className="morse-column">
+            <p>H ····</p>
+            <p>I ··</p>
+            <p>J ·‑‑‑</p>
+            <p>K ‑·‑</p>
+            <p>L ·‑··</p>
+            <p>M ‑‑</p>
+            <p>N ‑·</p>
+          </div>
+          <div className="morse-column">
+            <p>O ‑‑‑</p>
+            <p>P ·‑‑·</p>
+            <p>Q ‑‑·‑</p>
+            <p>R ·‑·</p>
+            <p>S ···</p>
+            <p>T ‑</p>
+            <p>U ··‑</p>
+          </div>
+          <div className="morse-column">
+            <p>V ···‑</p>
+            <p>W ·‑‑</p>
+            <p>X ‑··‑</p>
+            <p>Y ‑·‑‑</p>
+            <p>Z ‑‑··</p>
+          </div>
+        </div>
+      </div>
+
       <div className="activity-input-row">
         <input
           type="text"
@@ -48,13 +87,16 @@ export function MorseActivity({ activity, onCompleted }: MorseActivityProps) {
           Проверить
         </button>
       </div>
-      {status === 'ok' && <p className="activity-feedback success">{activity.successText}</p>}
+
+      {status === 'ok' && (
+        <p className="activity-feedback success">{activity.successText}</p>
+      )}
+      
       {status === 'fail' && (
         <p className="activity-feedback error">
-          Чуть‑чуть мимо. Но я всё равно люблю каждую твою букву. Попробуешь ещё раз? 💌
+          Чуть‑чуть мимо. Попробуешь ещё раз? 💌
         </p>
       )}
     </div>
   );
 }
-

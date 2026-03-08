@@ -11,9 +11,9 @@ type HeartKind = 'pink' | 'gold' | 'broken';
 interface Heart {
   id: number;
   kind: HeartKind;
-  x: number; // 0–100 (%)
-  y: number; // 0–100 (%)
-  speed: number; // относительная скорость падения
+  x: number;
+  y: number; 
+  speed: number;
 }
 
 const SPAWN_MIN_MS = 1200;
@@ -110,7 +110,7 @@ export function CatchHeartsActivity({ activity, onCompleted }: CatchHeartsActivi
           kind,
           x: 10 + Math.random() * 80,
           y: -8,
-          speed: baseSpeed * (0.85 + Math.random() * 0.3),
+          speed: baseSpeed * (0.95 + Math.random() * 0.3),
         });
       }
 
@@ -163,7 +163,7 @@ export function CatchHeartsActivity({ activity, onCompleted }: CatchHeartsActivi
         </span>
         {score < 0 && (
           <span className="catch-hearts-message">
-            Ничего страшного, даже разбитые сердечки можно залечить 🌸
+            Ничего страшного, даже разбитые сердечки можно залечить
           </span>
         )}
       </div>
@@ -186,7 +186,7 @@ export function CatchHeartsActivity({ activity, onCompleted }: CatchHeartsActivi
 
         {hearts.map((heart) => {
           let emoji = '❤️';
-          if (heart.kind === 'gold') emoji = '💛';
+          if (heart.kind === 'gold') emoji = '💘';
           if (heart.kind === 'broken') emoji = '💔';
 
           return (

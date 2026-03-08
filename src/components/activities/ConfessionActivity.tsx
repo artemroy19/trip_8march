@@ -6,7 +6,7 @@ interface ConfessionActivityProps {
   onCompleted: () => void;
 }
 
-const EMOJIS = ['🧸', '🌸', '💌', '❤️', '⭐'] as const;
+const EMOJIS = ['🧸', '✈️', '🖼️', '🍓', '💐'] as const;
 type SlotIndex = 0 | 1 | 2;
 type SlotsState = [number, number, number];
 
@@ -57,7 +57,7 @@ export function ConfessionActivity({ activity, onCompleted }: ConfessionActivity
 
   return (
     <div className="activity-block">
-      <h3 className="activity-title">Романтическое признание</h3>
+      <h3 className="activity-title">Стабильность, которая нужна</h3>
       <p>{activity.textBefore}</p>
 
       <div className={`emoji-lock ${revealed ? 'emoji-lock--success' : ''}`}>
@@ -76,7 +76,7 @@ export function ConfessionActivity({ activity, onCompleted }: ConfessionActivity
           ))}
         </div>
         <div className="emoji-lock-hint">
-          Подсказка: попробуй собрать трёх плюшевых мишек 🧸
+          Ответ прячется в трёх одинаковых эммодзи...
         </div>
         <div className="emoji-lock-actions">
           <button type="button" onClick={reset} className="emoji-reset">

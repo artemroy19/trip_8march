@@ -63,14 +63,14 @@ export function QuizActivity({ activity, onCompleted }: QuizActivityProps) {
         <p className={`activity-feedback ${correct ? 'success' : 'error'}`}>
           {correct
             ? question.successText
-            : 'Почти! Попробуй ещё раз, я верю в твой детективный талант 🌸'}
+            : 'Почти! Попробуй ещё раз, родная 🌸'}
         </p>
       )}
 
       {canGoNext && (
         <div className="activity-next">
           <button type="button" onClick={handleNext} className="primary-button primary-button--ready">
-            {isLast ? 'Всё вспомнила ✨' : 'Следующий вопрос ➔'}
+            {isLast ? 'Вспомнила и ответила! ✨' : 'Следующий вопрос ➔'}
           </button>
         </div>
       )}

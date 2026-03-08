@@ -14,12 +14,12 @@ interface MatchCard {
 }
 
 const PAIR_BORDER_COLORS = [
-  '#e879f9', /* фиолетовый */
-  '#38bdf8', /* голубой */
-  '#4ade80', /* зелёный */
-  '#fbbf24', /* жёлтый */
-  '#f472b6', /* розовый */
-  '#a78bfa', /* лавандовый */
+  '#e879f9', 
+  '#38bdf8', 
+  '#4ade80', 
+  '#fbbf24', 
+  '#f472b6', 
+  '#a78bfa', 
 ];
 
 function shuffle<T>(arr: T[]): T[] {
